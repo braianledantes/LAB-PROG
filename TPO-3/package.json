@@ -1,0 +1,26 @@
+{
+  "name": "tpo-3",
+  "version": "1.0.0",
+  "description": "API de tragos del Bar de la FAI",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "keywords": [
+    "tragos",
+    "bar",
+    "faiweb",
+    "bebidas",
+    "alcohol"
+  ],
+  "author": "Braian Ledantes",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "zod": "3.22.2"
+  }
+}

@@ -1,0 +1,19 @@
+### Recuperar todos los tragos
+GET http://localhost:8080/api/drinks
+
+### Buscar un trago por nombre
+GET http://localhost:8080/api/drinks?search=ABC
+
+### Recuperar un trago por id
+GET http://localhost:8080/api/drinks/17222
+
+### Actualizar un trago
+PATCH http://localhost:8080/api/drinks/17222
+Content-Type: application/json
+
+{
+    "strDrink": "Margarita"
+}
+
+### Eliminar un trago por id
+DELETE http://localhost:8080/api/drinks/13501

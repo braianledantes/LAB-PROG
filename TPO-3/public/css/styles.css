@@ -1,0 +1,244 @@
+:root {
+    --primary-color: #009f96;
+    --secondary-color: #003b38;
+    --background-color: black;
+    --text-color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Source Code Pro', monospace;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 5px black;
+    position: sticky;
+    top: 0;
+    border-bottom: 2px solid var(--secondary-color);
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    column-gap: 12px;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    list-style: none;
+    gap: 16px;
+    padding: 1rem;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+section:not(.presentacion) {
+    border-top: 2px solid var(--secondary-color);
+    margin-bottom: 5rem;
+}
+
+/* presentacion */
+.presentacion {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    background-image: url("../assets/images/fondo_del_bar.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.presentacion h1 {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 4rem;
+    text-shadow: 0 0 10px black;
+}
+
+/* Footer */
+footer {
+    margin-top: 3rem;
+    padding: 2rem;
+    color: var(--primary-color);
+    background-color: rgb(44, 44, 44);
+    text-align: center;
+}
+
+/* Tragos populares */
+.tragos-populares, .ingredientes {
+    padding: 0 2rem;
+}
+
+.tragos-populares h2, .ingredientes h2 {
+    text-align: center;
+    margin: 2rem;
+}
+
+.buscador {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.buscador input {
+    background-color: var(--secondary-color);
+    padding: .8rem;
+    flex-grow: 3;
+    color: aliceblue;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+}
+
+.buscador button {
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    border: none;
+    flex-grow: 1;
+    padding: .8rem 1.8rem;
+    border-radius: 5px;
+}
+
+.buscador button:hover {
+    cursor: pointer;
+    background-color: var(--primary-color);
+}
+
+.lista-tragos, .lista-ingredientes {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 300px));
+    justify-content: center;
+    gap: 1rem;
+}
+
+.trago, .ingrediente {
+    background-color: var(--secondary-color);
+    padding: .8rem;
+    transition: all .2s ease;
+    border-radius: 5px;
+}
+
+.trago:hover, .ingrediente:hover {
+    /* transform: scale(1.005); */
+    background-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+
+.trago__img, .ingrediente__img {
+    background-color: #202020;
+    width: 100%;
+    min-height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.trago__descripcion, .ingrediente__descripcion {
+    text-align: center;
+    text-transform: capitalize;
+    margin-top: 4px;
+    padding: .5rem;
+}
+
+/* ubicacion */
+.ubicacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ubicacion h2 {
+    text-align: center;
+    margin: 2rem;
+}
+
+.ubicacion iframe {
+    width: 700px;
+}
+
+/* Acerca de */
+.sobre-el-tp {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    padding: 5rem;
+    min-height: 700px;
+}
+
+.sobre-el-tp img {
+    width: 300px;
+    border-radius: 50%;
+    filter: grayscale(70%);
+    transition: filter .5s ease, box-shadow .5s ease;
+}
+
+.sobre-el-tp img:hover {
+    filter: grayscale(0);
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+
+.sobre-el-tp .descripcion {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 400px;
+    text-align: end;
+}
+
+.sobre-el-tp .descripcion a {
+    color: var(--text-color);
+}
+
+@media screen and (max-width: 1024px) {
+    .lista-tragos, .lista-ingredientes {
+        grid-template-columns: repeat(3, minmax(200px, 400px));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ubicacion iframe {
+        width: 100%;
+    }
+
+    .lista-tragos, .lista-ingredientes {
+        grid-template-columns: repeat(2, minmax(200px, 400px));
+    }
+}
+
+@media screen and (max-width: 500px) {
+     .lista-tragos, .lista-ingredientes {
+        grid-template-columns: minmax(200px, 400px);
+    }
+}

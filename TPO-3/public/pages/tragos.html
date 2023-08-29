@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadatos -->
+    <meta charset="UTF-8">
+    <meta name="author" content="Braian Ledantes">
+    <meta name="description" content="Portal de tragos del Barcito de la FAI">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titulo -->
+    <title>El Bar de la FAI</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        :root {
+            --primary-color: #b1ae00;
+            --secondary-color: #686600;
+        }
+    </style>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;400;700&display=swap"
+        rel="stylesheet">
+
+
+    
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="../index.html">
+            <img src="../assets/images/favicon.png" alt="Logo de la página">
+            <div>El Bar de la FAI</div>
+        </a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="./tragos.html">Tragos</a></li>
+                <li><a href="./ingredientes.html">Ingredientes</a></li>
+                <li><a href="./acercade.html">Acerca de</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="tragos-populares">
+            <h2>Tragos</h2>
+            <div class="buscador">
+                <input type="text" id="inputNombreTrago" placeholder="Ej: Margarita">
+                <button type="button" id="btnBuscar">Buscar</button>
+            </div>
+            <div class="lista-tragos" id="lista-tragos">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Braian Ledantes | TPO 3 de Laboratorio de Programación | UNCO &#169; 2020</p>
+    </footer>
+
+    <script src="../scripts/tragos.js"></script>
+</body>
+
+</html>
