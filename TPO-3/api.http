@@ -1,6 +1,9 @@
 ### Recuperar todos los tragos
 GET http://localhost:8080/api/drinks
 
+### Recuperar todos los tragos más populares
+GET http://localhost:8080/api/drinks/concurrents
+
 ### Buscar un trago por nombre
 GET http://localhost:8080/api/drinks?search=ABC
 
@@ -17,3 +20,9 @@ Content-Type: application/json
 
 ### Eliminar un trago por id
 DELETE http://localhost:8080/api/drinks/13501
+
+### Recuperar todos los ingredientes
+GET http://localhost:8080/api/ingredients
+
+### Buscar ingredientes por nombre
+GET http://localhost:8080/api/ingredients?search=gin
