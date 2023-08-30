@@ -16,6 +16,11 @@ export class DrinkController {
         res.status(404).json(({ message: 'Drink not fount' }));
     }
 
+    static async getConcurrent(req, res) {
+        const drinks = await DrinkModel.getConcurrent();
+        res.json(drinks);
+    }
+
     static async create(req, res) {
         const result = validateDrink(req.body);
 

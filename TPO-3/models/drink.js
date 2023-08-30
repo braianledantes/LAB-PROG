@@ -20,6 +20,10 @@ export class DrinkModel {
         return drink;
     }
 
+    static async getConcurrent() {
+        return drinks.slice(0, 20);
+    }
+
     static async create({ input }) {
         const newDrink = {
             id: randomUUID(),
