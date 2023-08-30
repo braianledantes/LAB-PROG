@@ -1,4 +1,4 @@
-fetch('http://localhost:8080/api/drinks')
+fetch('http://localhost:8080/api/drinks/concurrents')
     .then(response => response.json())
     .then(json => initializeTragos(json))
 

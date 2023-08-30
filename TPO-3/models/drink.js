@@ -20,8 +20,8 @@ export class DrinkModel {
         return drink;
     }
 
-    static async getConcurrent() {
-        return drinks.slice(0, 20);
+    static async getConcurrents() {
+        return drinks.slice(0, 12);
     }
 
     static async create({ input }) {

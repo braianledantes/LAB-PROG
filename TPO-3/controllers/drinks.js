@@ -16,8 +16,8 @@ export class DrinkController {
         res.status(404).json(({ message: 'Drink not fount' }));
     }
 
-    static async getConcurrent(req, res) {
-        const drinks = await DrinkModel.getConcurrent();
+    static async getConcurrents(req, res) {
+        const drinks = await DrinkModel.getConcurrents();
         res.json(drinks);
     }
 

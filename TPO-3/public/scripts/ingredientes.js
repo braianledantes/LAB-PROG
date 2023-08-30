@@ -1,22 +1,22 @@
 const input = document.getElementById('inputNombreIngrediente');
 const button = document.getElementById('btnBuscar');
 
-buscarIngrediente(input.value);
+buscarbuscarTrago(input.value);
 
 button.addEventListener('click', () => {
     console.log('click en el boton' + input.value);
-    buscarIngrediente(input.value)
+    buscarbuscarTrago(input.value)
 })
 
-function buscarIngrediente(query) {
+function buscarbuscarTrago(query) {
     removeIngredientesItems();
 
     // TODO cambiar URL a la nueva API (ver que no devuelva un array de ingredientes)
-    const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?i='
+    const url = 'http://localhost:8080/api/ingredients?search='
 
     fetch(`${url}${query}`)
         .then(response => response.json())
-        .then(json => initializeIngredientes(json.ingredients))
+        .then(json => initializeIngredientes(json))
 
     function initializeIngredientes(ingredientes) {
         console.log(ingredientes);
@@ -42,10 +42,10 @@ function buscarIngrediente(query) {
         article.setAttribute('class', 'ingrediente');
         img.setAttribute('class', 'ingrediente__img');
         // TODO buscar la imagen en la nueva API
-        img.src = `https://www.thecocktaildb.com/images/ingredients/${ingrediente.strIngredient}.png`
-        img.alt = `Ingrediente ${ingrediente.strIngredient}`;
+        img.src = ingrediente.srcImage;
+        img.alt = `Ingrediente ${ingrediente.name}`;
         p.setAttribute('class', 'ingrediente__descripcion');
-        p.textContent = ingrediente.strIngredient;
+        p.textContent = ingrediente.name;
 
         article.appendChild(img);
         article.appendChild(img);

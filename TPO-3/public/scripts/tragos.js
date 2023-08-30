@@ -1,14 +1,14 @@
 const input = document.getElementById('inputNombreTrago');
 const button = document.getElementById('btnBuscar');
 
-buscarIngrediente(input.value);
+buscarbuscarTrago(input.value);
 
 button.addEventListener('click', () => {
     console.log('click en el boton' + input.value);
-    buscarIngrediente(input.value)
+    buscarbuscarTrago(input.value)
 })
 
-function buscarIngrediente(query) {
+function buscarbuscarTrago(query) {
     removeTragosItems();
 
     const url = 'http://localhost:8080/api/drinks?search='
