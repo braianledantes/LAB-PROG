@@ -76,7 +76,7 @@ section:not(.presentacion) {
 
 .presentacion h1 {
     position: absolute;
-    top:50%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -94,11 +94,13 @@ footer {
 }
 
 /* Tragos populares */
-.tragos-populares, .ingredientes {
+.tragos-populares,
+.ingredientes {
     padding: 0 2rem;
 }
 
-.tragos-populares h2, .ingredientes h2 {
+.tragos-populares h2,
+.ingredientes h2 {
     text-align: center;
     margin: 2rem;
 }
@@ -134,7 +136,8 @@ footer {
     background-color: var(--primary-color);
 }
 
-.lista-tragos, .lista-ingredientes {
+.lista-tragos,
+.lista-ingredientes {
     margin: auto;
     display: grid;
     grid-template-columns: repeat(4, minmax(200px, 300px));
@@ -142,20 +145,23 @@ footer {
     gap: 1rem;
 }
 
-.trago, .ingrediente {
+.trago,
+.ingrediente {
     background-color: var(--secondary-color);
     padding: .8rem;
     transition: all .2s ease;
     border-radius: 5px;
 }
 
-.trago:hover, .ingrediente:hover {
+.trago:hover,
+.ingrediente:hover {
     /* transform: scale(1.005); */
     background-color: var(--primary-color);
     box-shadow: 0 0 10px var(--secondary-color);
 }
 
-.trago__img, .ingrediente__img {
+.trago__img,
+.ingrediente__img {
     background-color: #202020;
     width: 100%;
     min-height: 250px;
@@ -163,11 +169,35 @@ footer {
     display: block;
 }
 
-.trago__descripcion, .ingrediente__descripcion {
+.trago__descripcion,
+.ingrediente__descripcion {
     text-align: center;
     text-transform: capitalize;
     margin-top: 4px;
     padding: .5rem;
+}
+
+/* Animacion para los tragos populares */
+.trago__polular {
+    view-timeline-name: --revealing-image;
+    view-timeline-axis: block;
+    animation-name: show;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    animation-timeline: --revealing-image;
+    animation-range: entry 25% cover 50%;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        scale: 75%;
+    }
+
+    to {
+        opacity: 1;
+        scale: 100%;
+    }
 }
 
 /* ubicacion */
@@ -222,7 +252,9 @@ footer {
 }
 
 @media screen and (max-width: 1024px) {
-    .lista-tragos, .lista-ingredientes {
+
+    .lista-tragos,
+    .lista-ingredientes {
         grid-template-columns: repeat(3, minmax(200px, 400px));
     }
 }
@@ -232,13 +264,16 @@ footer {
         width: 100%;
     }
 
-    .lista-tragos, .lista-ingredientes {
+    .lista-tragos,
+    .lista-ingredientes {
         grid-template-columns: repeat(2, minmax(200px, 400px));
     }
 }
 
 @media screen and (max-width: 500px) {
-     .lista-tragos, .lista-ingredientes {
+
+    .lista-tragos,
+    .lista-ingredientes {
         grid-template-columns: minmax(200px, 400px);
     }
 }

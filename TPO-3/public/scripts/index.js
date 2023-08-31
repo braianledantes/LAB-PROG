@@ -15,7 +15,7 @@ function renderTragoItem(trago) {
     const img = document.createElement("img");
     const p = document.createElement("p");
 
-    article.setAttribute('class', 'trago');
+    article.setAttribute('class', 'trago trago__polular');
     img.setAttribute('class', 'trago__img');
     img.src = trago.strDrinkThumb;
     img.alt = `Trago ${trago.strDrink}`;
