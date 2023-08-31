@@ -1,10 +1,20 @@
 import { DrinkModel } from '../models/drink.js';
-import { validateDrink, validatePartialDrink } from '../schemas/drinks.js';
+import { validateDrink, validatePartialDrink, validateDrinkSearch } from '../schemas/drinks.js';
 
 export class DrinkController {
     static async getAll(req, res) {
-        const { search } = req.query;
-        const drinks = await DrinkModel.getAll({ search });
+        const { search = "", page = 1, pageSize = 12 } = req.query;
+        const result = validateDrinkSearch({
+            search,
+            page: Number.parseInt(page),
+            pageSize: Number.parseInt(pageSize)
+        })
+
+        if (!result.success) {
+            return res.status(400).json({ message: JSON.parse(result.error.message) });
+        }
+
+        const drinks = await DrinkModel.getAll(result.data);
         res.json(drinks);
     }
 

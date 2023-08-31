@@ -17,10 +17,10 @@ function renderTragoItem(trago) {
 
     article.setAttribute('class', 'trago trago__polular');
     img.setAttribute('class', 'trago__img');
-    img.src = trago.strDrinkThumb;
-    img.alt = `Trago ${trago.strDrink}`;
+    img.src = trago.imageUrl;
+    img.alt = `Trago ${trago.name}`;
     p.setAttribute('class', 'trago__descripcion');
-    p.textContent = trago.strDrink;
+    p.textContent = trago.name;
 
     article.appendChild(img);
     article.appendChild(img);

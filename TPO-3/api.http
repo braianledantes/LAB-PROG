@@ -1,6 +1,9 @@
 ### Recuperar todos los tragos
 GET http://localhost:8080/api/drinks
 
+### Recuperar tragos con paginación
+GET http://localhost:8080/api/drinks?page=6&pageSize=16
+
 ### Recuperar todos los tragos más populares
 GET http://localhost:8080/api/drinks/concurrents
 

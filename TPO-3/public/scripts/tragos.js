@@ -1,26 +1,49 @@
-const input = document.getElementById('inputNombreTrago');
-const button = document.getElementById('btnBuscar');
+const inputSearch = document.getElementById('inputNombreTrago');
+const btnSearch = document.getElementById('btnBuscar');
+const currentPage = document.getElementById('currentPage');
+const btnNext = document.getElementById('btnNext');
+const btnPrev = document.getElementById('btnPrev');
 
-buscarbuscarTrago(input.value);
+let page = 1;
+let pageSize = 16;
+let maxPages = Number.MAX_VALUE;
 
-button.addEventListener('click', () => {
-    console.log('click en el boton' + input.value);
-    buscarbuscarTrago(input.value)
+buscarTrago(inputSearch.value);
+
+btnSearch.addEventListener('click', () => {
+    page = 1;
+    buscarTrago(inputSearch.value)
 })
 
-function buscarbuscarTrago(query) {
+btnNext.addEventListener('click', () => {
+    if (page < maxPages) {
+        page++;
+        buscarTrago(inputSearch.value);
+    }
+})
+
+btnPrev.addEventListener('click', () => {
+    if (page > 1) {
+        page--;
+        buscarTrago(inputSearch.value);
+    }
+})
+
+function buscarTrago(query) {
     removeTragosItems();
 
-    const url = 'http://localhost:8080/api/drinks?search='
-
-    fetch(`${url}${query}`)
+    fetch(`http://localhost:8080/api/drinks?search=${query}&page=${page}&pageSize=${pageSize}`)
         .then(response => response.json())
         .then(json => initializeTragos(json))
 
-    function initializeTragos(tragos) {
-        tragos.forEach(trago => {
-            renderTragoItem(trago)
+    function initializeTragos(response) {
+        response.drinks.forEach(drink => {
+            renderTragoItem(drink)
         });
+        page = response.maxPages == 0 ? 0 : response.page;
+        maxPages = response.maxPages;
+
+        currentPage.innerHTML = `${page} / ${maxPages}`;
     }
 
     function removeTragosItems() {
@@ -39,10 +62,10 @@ function buscarbuscarTrago(query) {
 
         article.setAttribute('class', 'trago');
         img.setAttribute('class', 'trago__img');
-        img.src = trago.strDrinkThumb;
-        img.alt = `Trago ${trago.strDrink}`;
+        img.src = trago.imageUrl;
+        img.alt = `Trago ${trago.name}`;
         p.setAttribute('class', 'trago__descripcion');
-        p.textContent = trago.strDrink;
+        p.textContent = trago.name;
 
         article.appendChild(img);
         article.appendChild(img);

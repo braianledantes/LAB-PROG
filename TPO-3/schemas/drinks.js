@@ -13,3 +13,13 @@ export function validateDrink(input) {
 export function validatePartialDrink(input) {
     return drinkSchema.partial().safeParse(input);
 }
+
+const drinkSearchSchema = z.object({
+    search: z.string(),
+    page: z.number().positive(),
+    pageSize: z.number().positive().max(32)
+})
+
+export function validateDrinkSearch(input) {
+    return drinkSearchSchema.safeParse(input);
+}
