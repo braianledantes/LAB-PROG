@@ -1,28 +1,50 @@
-const input = document.getElementById('inputNombreIngrediente');
-const button = document.getElementById('btnBuscar');
+const inputSearch = document.getElementById('inputNombreIngrediente');
+const btnSearch = document.getElementById('btnBuscar');
+const currentPage = document.getElementById('currentPage');
+const btnNext = document.getElementById('btnNext');
+const btnPrev = document.getElementById('btnPrev');
 
-buscarbuscarTrago(input.value);
+let page = 1;
+let pageSize = 16;
+let maxPages = Number.MAX_VALUE;
 
-button.addEventListener('click', () => {
-    console.log('click en el boton' + input.value);
-    buscarbuscarTrago(input.value)
+searchIngredient(inputSearch.value);
+
+btnSearch.addEventListener('click', () => {
+    page = 1;
+    searchIngredient(inputSearch.value)
 })
 
-function buscarbuscarTrago(query) {
+btnNext.addEventListener('click', () => {
+    if (page < maxPages) {
+        page++;
+        searchIngredient(inputSearch.value);
+    }
+})
+
+btnPrev.addEventListener('click', () => {
+    if (page > 1) {
+        page--;
+        searchIngredient(inputSearch.value);
+    }
+})
+
+function searchIngredient(query) {
     removeIngredientesItems();
 
-    // TODO cambiar URL a la nueva API (ver que no devuelva un array de ingredientes)
-    const url = 'http://localhost:8080/api/ingredients?search='
-
-    fetch(`${url}${query}`)
+    fetch(`http://localhost:8080/api/ingredients?search=${query}&page=${page}&pageSize=${pageSize}`)
         .then(response => response.json())
         .then(json => initializeIngredientes(json))
 
-    function initializeIngredientes(ingredientes) {
-        console.log(ingredientes);
-        ingredientes.forEach(ingrediente => {
+    function initializeIngredientes(response) {
+        response.ingredients.forEach(ingrediente => {
             renderIngredienteItem(ingrediente)
         });
+
+        page = response.maxPages == 0 ? 0 : response.page;
+        maxPages = response.maxPages;
+
+        currentPage.innerHTML = `${page} / ${maxPages}`;
     }
 
     function removeIngredientesItems() {

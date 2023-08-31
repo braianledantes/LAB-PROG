@@ -1,9 +1,9 @@
 import z from 'zod';
 
 const drinkSchema = z.object({
-    strDrink: z.string(),
-    strInstructions: z.string(),
-    strDrinkThumb: z.string().url()
+    name: z.string(),
+    instructions: z.string(),
+    imageUrl: z.string().url()
 })
 
 export function validateDrink(input) {
