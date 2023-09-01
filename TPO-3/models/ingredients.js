@@ -1,7 +1,7 @@
 import { readJSON } from "../utils.js";
 import { randomUUID } from 'node:crypto';
 
-const ingredients = readJSON('./ingredients.json');
+const ingredients = readJSON('./data/ingredients.json');
 
 export class IngredientModel {
     static async getAll({ search = "", page = 1, pageSize = 12 }) {

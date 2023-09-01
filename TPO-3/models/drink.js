@@ -3,15 +3,7 @@ import { readJSON } from '../utils.js';
 import { randomUUID } from 'node:crypto';
 
 // TODO convertir json con los datos necesarios
-const drinks = readJSON('./drinks.json').map(d => {
-    return {
-        id: d.idDrink,
-        name: d.strDrink,
-        instructions: d.strInstructions,
-        imageUrl: d.strDrinkThumb,
-        ingredients: []
-    }
-});
+const drinks = readJSON('./data/drinks.json');
 
 export class DrinkModel {
     static async getAll({ search = "", page = 1, pageSize = 12 }) {
@@ -46,6 +38,11 @@ export class DrinkModel {
 
     static async getById({ id }) {
         const drink = drinks.find(drink => drink.id === id)
+        return drink;
+    }
+
+    static async getByName({ name }) {
+        const drink = drinks.find(drink => drink.name === name)
         return drink;
     }
 
