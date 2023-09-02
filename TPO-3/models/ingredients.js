@@ -33,4 +33,8 @@ export class IngredientModel {
             ingredients: ingredientsResult
         };
     }
+
+    static async getByName({ name }) {
+        return ingredients.find(i => i.name === name);
+    }
 }

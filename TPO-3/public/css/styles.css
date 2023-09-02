@@ -146,12 +146,19 @@ button:hover {
     gap: 1rem;
 }
 
+.lista-tragos a,
+.lista-ingredientes a,
+.tragos-populares a {
+    text-decoration: none;
+    color: white;
+}
+
 .trago,
 .ingrediente {
     background-color: var(--secondary-color);
     padding: .8rem;
     transition: all .2s ease;
-    border-radius: 5px;
+    border-radius: 5px;   
 }
 
 .trago:hover,
@@ -165,6 +172,7 @@ button:hover {
 .ingrediente__img {
     background-color: #202020;
     width: 100%;
+    aspect-ratio: 1/1;
     min-height: 250px;
     object-fit: cover;
     display: block;
@@ -265,6 +273,47 @@ button:hover {
 
 .sobre-el-tp .descripcion a {
     color: var(--text-color);
+}
+
+/* Detalles de trago */
+.trago_detalles {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem;
+}
+
+.drink {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.trago_detalles h3 {
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.drink__instructions {
+    text-align: center;
+
+}
+
+.drink__img {
+    width: 500px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+}
+
+.ingredients {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
+    justify-content: center;
+    gap: 2rem 1rem;
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 1024px) {

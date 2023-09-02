@@ -17,4 +17,12 @@ export class IngredientController {
         const ingredients = await IngredientModel.getAll(result.data);
         res.json(ingredients);
     }
+
+    static async getByName(req, res) {
+        const { name } = req.params;
+        const ingredient = await IngredientModel.getByName({ name });
+        if (ingredient) return res.json(ingredient);
+
+        res.status(404).json(({ message: 'Drink not fount' }));
+    }
 }
