@@ -58,7 +58,7 @@ async function renderDrink(drink) {
                 const imgIng = document.createElement("img");
                 imgIng.setAttribute('class', 'ingrediente__img');
                 imgIng.src = ingredient.srcImage;
-                imgIng.alt = `Trago ${ingredient.name}`;
+                imgIng.alt = `${ingredient.name}`;
         
                 const pIng = document.createElement("p");
                 pIng.setAttribute('class', 'ingrediente__descripcion');
