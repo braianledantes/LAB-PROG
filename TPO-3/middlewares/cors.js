@@ -1,7 +1,8 @@
 import cors from 'cors';
 
 const ACEEPTED_ORIGINS = [
-    'http://localhost:8080'
+    'http://localhost:8080',
+    'https://elbardelafai-dev.fl0.io'
 ]
 
 export const corsMiddleware = ({ acceptedOrigins = ACEEPTED_ORIGINS } = {}) => cors({
