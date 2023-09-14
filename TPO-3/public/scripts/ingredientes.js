@@ -5,7 +5,7 @@ const btnNext = document.getElementById('btnNext');
 const btnPrev = document.getElementById('btnPrev');
 
 let page = 1;
-let pageSize = 16;
+let pageSize = 12;
 let maxPages = Number.MAX_VALUE;
 
 searchIngredient(inputSearch.value);
