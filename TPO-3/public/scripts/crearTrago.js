@@ -19,7 +19,7 @@ function crearTrago(event) {
         }
     })
         .then(res => {
-            if (res.status === 201) {
+            if (res.ok) {
                 window.location.href = '/pages/tragos.html';
             }
         })
