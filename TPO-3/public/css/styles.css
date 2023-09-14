@@ -122,7 +122,9 @@ footer {
     border-radius: 5px;
 }
 
-button, .number_page {
+button,
+.number_page {
+    font-family: 'Source Code Pro', monospace;
     color: var(--text-color);
     font-size: 1rem;
     background-color: var(--secondary-color);
@@ -158,7 +160,7 @@ button:hover {
     background-color: var(--secondary-color);
     padding: .8rem;
     transition: all .2s ease;
-    border-radius: 5px;   
+    border-radius: 5px;
 }
 
 .trago:hover,
@@ -278,6 +280,7 @@ button:hover {
 /* Detalles de trago */
 .trago_detalles {
     max-width: 1000px;
+    min-height: 70vh;
     margin: 0 auto;
     padding: 4rem;
 }
@@ -290,15 +293,20 @@ button:hover {
     gap: 2rem;
 }
 
-.trago_detalles h3 {
-    margin-top: 4rem;
-    margin-bottom: 1rem;
-    text-align: center;
+.trago_detalles .btn-delete {
+    background-color: rgb(120, 0, 0);
+    margin: 3rem auto;
+    display: block;
 }
 
-.drink__instructions {
-    text-align: center;
+.trago_detalles .btn-delete:hover {
+    background-color: rgb(90, 0, 0);
+    cursor: pointer;
+}
 
+.drink {
+    margin: 0;
+    text-align: center;
 }
 
 .drink__img {
@@ -306,6 +314,11 @@ button:hover {
     max-width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 10px;
+}
+
+.ingredients__title {
+    text-align: center;
+    margin: 2rem;
 }
 
 .ingredients {
@@ -316,18 +329,45 @@ button:hover {
     margin: 0 auto;
 }
 
+/* Dialog */
+dialog {
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: gainsboro;
+    box-shadow: 0 0 20px black;
+}
+
+.dialog__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.dialog__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
 /* Crear trago */
 .crear-trago {
     margin: 4rem 0;
-}
-.crear-trago h2 {
     text-align: center;
+    min-height: 70vh;
 }
 .crear-trago form {
     max-width: 600px;
     margin: 2rem auto;
     display: flex;
     flex-direction: column;
+    text-align: start;
     gap: 1rem;
 }
 
@@ -335,7 +375,7 @@ button:hover {
     padding: .5rem;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
 
     .lista-tragos,
     .lista-ingredientes {
@@ -343,7 +383,7 @@ button:hover {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .ubicacion iframe {
         width: 100%;
     }
@@ -354,7 +394,7 @@ button:hover {
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
 
     .lista-tragos,
     .lista-ingredientes {

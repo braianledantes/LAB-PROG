@@ -43,7 +43,18 @@
     </header>
     <main>
         <section class="trago_detalles">
-
+            <div class="trago_content"></div>
+            <dialog id="deleteDialog" class="dialog">
+                <form class="dialog__content">
+                    <h3 class="dialog__title">Eliminar</h3>
+                    <p class="dialog__message">¿Desea eliminar el trago?</p>
+                    <div class="dialog__buttons">
+                        <button value="default" formmethod="dialog">Cancelar</button>
+                        <button id="confirmBtn">Confirmar</button>
+                    </div>
+                </form>
+            </dialog>
+            <button id="btnDelete" class="btn-delete">Eliminar trago</button>
         </section>
     </main>
     <footer>

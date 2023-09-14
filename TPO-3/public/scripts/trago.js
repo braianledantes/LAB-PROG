@@ -2,8 +2,6 @@ const params = {};
 getParams();
 const idDrink = params['id'];
 
-const drickElement = document.createElement('article',)
-
 function getParams() {
     var paramstr = window.location.search.substr(1);
     var paramarr = paramstr.split("&");
@@ -14,14 +12,48 @@ function getParams() {
     }
 }
 
-fetch(`/api/drinks/${idDrink}`)
-    .then(res => res.json())
-    .then(drink => renderDrink(drink))
+const btnDelete = document.getElementById("btnDelete");
+const deleteDialog = document.getElementById("deleteDialog");
+const btnConfirm = document.getElementById("confirmBtn");
+const btnCancel = document.getElementById("cancelBtn");
+const tragoDetalles = document.querySelector(".trago_detalles");
+const contentDrink = document.querySelector(".trago_content");
 
-async function renderDrink(drink) {
-    const trago_detalles = document.querySelector(".trago_detalles");
+btnDelete.addEventListener("click", () => {
+    deleteDialog.showModal();
+});
 
+deleteDialog.addEventListener("close", () => {
+    if (deleteDialog.returnValue && deleteDialog.returnValue !== "default") {
+        tragoDetalles.innerHTML = deleteDialog.returnValue;
+    }
+});
 
+btnConfirm.addEventListener("click", (event) => {
+    event.preventDefault();
+    fetch(`/api/drinks/${idDrink}`, { method: "DELETE" })
+        .then(res => {
+            if (res.status === 200)
+                deleteDialog.close("Trago eliminado exitosamente");
+            else
+                deleteDialog.close("El trago no pudo ser eliminado");
+        })
+        .catch(e => {
+            console.error(e);
+        });
+});
+
+function renderError(error) {
+    console.log(error);
+    error.json().then((body) => {
+        //Here is already the payload from API
+        console.error(body);
+        tragoDetalles.innerHTML = "<h2>Error al traer trago con id " + idDrink + "</h2>"
+        tragoDetalles.innerHTML += "<p>" + body.message + "</p>"
+    });
+}
+
+function renderDrink(drink) {
     const article = document.createElement("article");
     article.setAttribute('class', 'drink');
 
@@ -40,15 +72,16 @@ async function renderDrink(drink) {
 
     const divIngredientes = document.createElement("div");
     divIngredientes.setAttribute('class', 'ingredients');
-
+    
     const h3 = document.createElement("h3");
+    h3.setAttribute('class', 'ingredients__title');
     h3.textContent = "Ingredientes";
 
     if (Array.isArray(drink.ingredients)) {
         drink.ingredients.forEach(async ingredientName => {
             try {
-                console.log(`http://localhost:8080/api/ingredients/${ingredientName.replace(" ", "%20")}`);
-                const res = await fetch(`http://localhost:8080/api/ingredients/${ingredientName.replace(" ", "%20")}`)
+                console.log(`/api/ingredients/${ingredientName.replace(" ", "%20")}`);
+                const res = await fetch(`/api/ingredients/${ingredientName.replace(" ", "%20")}`)
                 const ingredient = await res.json()
                 if (ingredient) {
                     const articleIngredient = document.createElement("article");
@@ -79,15 +112,19 @@ async function renderDrink(drink) {
         h3.textContent = "No tiene ingredientes"
     }
 
-
     article.appendChild(h2);
     article.appendChild(img);
     article.appendChild(p);
 
-    trago_detalles.appendChild(article);
-    trago_detalles.appendChild(h3)
-    trago_detalles.appendChild(divIngredientes);
-
-
-
+    contentDrink.appendChild(article);
+    contentDrink.appendChild(h3)
+    contentDrink.appendChild(divIngredientes);
 }
+
+fetch(`/api/drinks/${idDrink}`)
+    .then(res => {
+        if (!res.ok) throw res;
+        return res.json();
+    })
+    .then(drink => renderDrink(drink))
+    .catch(err => renderError(err))
