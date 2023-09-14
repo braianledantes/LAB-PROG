@@ -20,7 +20,7 @@ function crearTrago(event) {
     })
         .then(res => {
             if (res.ok) {
-                window.location.href = '/pages/tragos.html';
+                window.location.href = '/tragos.html';
             }
         })
         .catch(err => {

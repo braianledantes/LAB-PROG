@@ -27,7 +27,7 @@ function renderTragoItem(trago) {
         article.appendChild(p);
         
         const anchor = document.createElement("a")
-        anchor.setAttribute('href', `./pages/trago.html?id=${trago.id}`)
+        anchor.setAttribute('href', `./trago.html?id=${trago.id}`)
         anchor.setAttribute('target', `_black`)
         anchor.setAttribute('rel', `noopener noreferrer`)
         anchor.appendChild(article);
