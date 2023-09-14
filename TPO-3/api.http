@@ -21,6 +21,16 @@ Content-Type: application/json
     "strDrink": "Margarita"
 }
 
+### Actualizar un trago
+POST http://localhost:8080/api/drinks
+Content-Type: application/json
+
+{
+    "name": "Braian",
+    "instructions": "Instrucciones de cómo preparar mi trago favorito",
+    "imageUrl": "https://www.thecocktaildb.com/images/media/drink/l3cd7f1504818306.jpg"
+}
+
 ### Eliminar un trago por id
 DELETE http://localhost:8080/api/drinks/13501
 

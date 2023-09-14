@@ -1,4 +1,5 @@
 import express, { json } from "express";
+import bodyParser from 'body-parser';
 import { corsMiddleware } from "./middlewares/cors.js";
 import { drinksRouter } from "./routes/drink.js";
 import { ingredientsRouter } from "./routes/ingredients.js";

@@ -32,7 +32,7 @@ btnPrev.addEventListener('click', () => {
 function buscarTrago(query) {
     removeTragosItems();
 
-    fetch(`http://localhost:8080/api/drinks?search=${query}&page=${page}&pageSize=${pageSize}`)
+    fetch(`/api/drinks?search=${query}&page=${page}&pageSize=${pageSize}`)
         .then(response => response.json())
         .then(json => initializeTragos(json))
 

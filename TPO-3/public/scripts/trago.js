@@ -14,7 +14,7 @@ function getParams() {
     }
 }
 
-fetch(`http://localhost:8080/api/drinks/${idDrink}`)
+fetch(`/api/drinks/${idDrink}`)
     .then(res => res.json())
     .then(drink => renderDrink(drink))
 
@@ -40,41 +40,45 @@ async function renderDrink(drink) {
 
     const divIngredientes = document.createElement("div");
     divIngredientes.setAttribute('class', 'ingredients');
-    
+
     const h3 = document.createElement("h3");
     h3.textContent = "Ingredientes";
 
-   
+    if (Array.isArray(drink.ingredients)) {
+        drink.ingredients.forEach(async ingredientName => {
+            try {
+                console.log(`http://localhost:8080/api/ingredients/${ingredientName.replace(" ", "%20")}`);
+                const res = await fetch(`http://localhost:8080/api/ingredients/${ingredientName.replace(" ", "%20")}`)
+                const ingredient = await res.json()
+                if (ingredient) {
+                    const articleIngredient = document.createElement("article");
+                    articleIngredient.setAttribute('class', 'ingrediente');
 
-    drink.ingredients.forEach(async ingredientName => {
-        try {
-            console.log(`http://localhost:8080/api/ingredients/${ingredientName.replace(" ", "%20")}`);
-            const res = await fetch(`http://localhost:8080/api/ingredients/${ingredientName.replace(" ", "%20")}`)
-            const ingredient = await res.json()
-            if (ingredient) {
-                const articleIngredient = document.createElement("article");
-                articleIngredient.setAttribute('class', 'ingrediente');
-        
-                const imgIng = document.createElement("img");
-                imgIng.setAttribute('class', 'ingrediente__img');
-                imgIng.src = ingredient.srcImage;
-                imgIng.alt = `${ingredient.name}`;
-        
-                const pIng = document.createElement("p");
-                pIng.setAttribute('class', 'ingrediente__descripcion');
-                pIng.textContent = ingredientName;
-        
-                articleIngredient.appendChild(imgIng);
-                articleIngredient.appendChild(pIng);
-        
-                divIngredientes.appendChild(articleIngredient)
+                    const imgIng = document.createElement("img");
+                    imgIng.setAttribute('class', 'ingrediente__img');
+                    imgIng.src = ingredient.srcImage;
+                    imgIng.alt = `${ingredient.name}`;
+
+                    const pIng = document.createElement("p");
+                    pIng.setAttribute('class', 'ingrediente__descripcion');
+                    pIng.textContent = ingredientName;
+
+                    articleIngredient.appendChild(imgIng);
+                    articleIngredient.appendChild(pIng);
+
+                    divIngredientes.appendChild(articleIngredient)
+                }
+            } catch (e) {
+
             }
-        } catch (e) {
 
-        }
 
-        
-    });
+        });
+    }
+    else {
+        h3.textContent = "No tiene ingredientes"
+    }
+
 
     article.appendChild(h2);
     article.appendChild(img);

@@ -8,7 +8,7 @@
     <meta name="description" content="Portal de tragos del Barcito de la FAI">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Titulo -->
-    <title>Crear Trago | El Bar de la FAI</title>
+    <title>Crear trago | El Bar de la FAI</title>
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/styles.css">
     <style>
@@ -42,26 +42,24 @@
         </nav>
     </header>
     <main>
-        <section class="tragos-populares">
-            <h2>Tragos</h2>
-            <div class="buscador">
-                <input type="text" id="inputNombreTrago" placeholder="Ej: Margarita">
-                <button type="button" id="btnBuscar">Buscar</button>
-            </div>
-            <div class="lista-tragos" id="lista-tragos">
-            </div> 
-            <div class="navigation_page">
-                <button type="button" id="btnPrev">< Anterior</button>
-                <span class="number_page" id="currentPage">1</span>
-                <button type="button" id="btnNext">Siguiente ></button>
-            </div>
+        <section class="crear-trago">
+            <h2>Crear trago</h2>
+            <form action="/api/drinks" method="post">
+                <label for="name">Nombre:</label>
+                <input type="text" name="name" id="name" required>
+                <label for="instructions">Instrucciones:</label>
+                <input type="text" name="instructions" id="instructions">
+                <label for="imageUrl">URL de la imágen:</label>
+                <input type="url" name="imageUrl" id="imageUrl" required>
+                <button id="btnCrearTrago" type="submit" onclick="crearTrago(event)">Crear trago</button>
+            </form>
         </section>
     </main>
     <footer>
         <p>Braian Ledantes | TPO 3 de Laboratorio de Programación | UNCO &#169; 2020</p>
     </footer>
 
-    <script src="../scripts/tragos.js"></script>
+    <script src="/scripts/crearTrago.js"></script>
 </body>
 
 </html>
