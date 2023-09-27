@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">El Bar de la FAI</string>
+    <string name="title_home">Home</string>
+    <string name="title_drinks">Drinks</string>
+    <string name="title_ingredients">Ingredients</string>
+    <string name="title_popular_drinks">Popular Drinks</string>
+</resources>
