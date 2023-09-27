@@ -3,7 +3,8 @@ import z from 'zod';
 const drinkSchema = z.object({
     name: z.string(),
     instructions: z.string(),
-    imageUrl: z.string().url()
+    imageUrl: z.string().url(),
+    ingredients: z.array(z.string())
 })
 
 export function validateDrink(input) {

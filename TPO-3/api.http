@@ -18,7 +18,9 @@ PATCH http://localhost:8080/api/drinks/17222
 Content-Type: application/json
 
 {
-    "strDrink": "Margarita"
+    "name": "braian",
+    "instructions": "hola",
+    "ingredients": [ "gato" ]
 }
 
 ### Actualizar un trago
