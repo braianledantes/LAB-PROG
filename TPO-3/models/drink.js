@@ -24,7 +24,7 @@ export class DrinkModel {
         if (start < drinksResult.length) {
             drinksResult = drinksResult.slice(start, end);
         } else {
-            drinksResult = drinksResult.slice(-pageSize)
+            drinksResult = []
         }
 
 
