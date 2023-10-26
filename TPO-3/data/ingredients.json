@@ -137,7 +137,7 @@
     },
     {
         "name": "Creme de Cacao",
-        "srcImage": "https://www.thecocktaildb.com/images/ingredients/Creme%20de Cacao.png"
+        "srcImage": "https://www.thecocktaildb.com/images/ingredients/Creme%20de%20Cacao.png"
     },
     {
         "name": "Grenadine",
@@ -369,7 +369,7 @@
     },
     {
         "name": "Midori melon liqueur",
-        "srcImage": "https://www.thecocktaildb.com/images/ingredients/Midori%20melon liqueur.png"
+        "srcImage": "https://www.thecocktaildb.com/images/ingredients/Midori%20melon%20liqueur.png"
     },
     {
         "name": "Sambuca",
@@ -397,6 +397,6 @@
     },
     {
         "name": "Creme de Cassis",
-        "srcImage": "https://www.thecocktaildb.com/images/ingredients/Creme%20de Cassis.png"
+        "srcImage": "https://www.thecocktaildb.com/images/ingredients/Creme%20de%20Cassis.png"
     }
 ]
