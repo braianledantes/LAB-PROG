@@ -1,7 +1,10 @@
 package com.braianledantes.elbardelafai.network
 
-import com.braianledantes.elbardelafai.database.DrinkEntity
+import com.braianledantes.elbardelafai.database.entities.DrinkEntity
+import com.braianledantes.elbardelafai.database.entities.PopularDrinkEntity
 import com.braianledantes.elbardelafai.domain.Drink
+import com.braianledantes.elbardelafai.domain.DrinkWithIngredients
+import com.braianledantes.elbardelafai.domain.Ingredient
 import com.google.gson.annotations.SerializedName
 
 data class NetworkDrinkListContainer(
@@ -36,6 +39,15 @@ data class NetworkDrink(
 
 fun List<NetworkDrink>.toDomainModel() = map { it.toDomainModel() }
 fun List<NetworkDrink>.toDatabaseModel() = map { it.toDatabaseModel() }
+
+fun List<NetworkDrink>.toPopularDrinkEntity() = map {
+    PopularDrinkEntity(
+        id = it.id,
+        name = it.name,
+        instructions = it.instructions,
+        imageUrl = it.imageUrl
+    )
+}
 
 fun NetworkDrinkListContainer.toDomainModel(): List<Drink> {
     return drinks.map { it.toDomainModel() }

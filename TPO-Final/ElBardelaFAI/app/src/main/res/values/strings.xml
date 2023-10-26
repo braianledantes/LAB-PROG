@@ -4,4 +4,16 @@
     <string name="title_drinks">Drinks</string>
     <string name="title_ingredients">Ingredients</string>
     <string name="title_popular_drinks">Popular Drinks</string>
+    <string name="title_create_drink">Create drink</string>
+
+    <string name="message_dialog_creating_drink">Successfully created drink</string>
+    <string name="accept_option">Accept</string>
+    <string name="error_invalid">Invalid</string>
+
+    <string name="text_field_drink_name">Name</string>
+    <string name="text_field_drink_instructions">Instructions</string>
+    <string name="text_field_drink_image_url">Instructions</string>
+    <string name="btn_create">Create</string>
+    <string name="btn_cancel">Cancel</string>
+
 </resources>

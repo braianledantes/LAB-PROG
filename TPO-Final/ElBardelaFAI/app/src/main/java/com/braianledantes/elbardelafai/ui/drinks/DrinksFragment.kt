@@ -1,17 +1,18 @@
 package com.braianledantes.elbardelafai.ui.drinks
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.braianledantes.elbardelafai.App
+import com.braianledantes.elbardelafai.R
 import com.braianledantes.elbardelafai.databinding.FragmentDrinksBinding
 import com.braianledantes.elbardelafai.repository.DrinksRepository
-import com.braianledantes.elbardelafai.vm.DrinksViewModel
-import com.braianledantes.elbardelafai.vm.DrinksViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -24,7 +25,7 @@ class DrinksFragment : Fragment() {
         val application = (activity?.application as App)
         val database = application.database
         DrinksViewModelFactory(
-            DrinksRepository(database)
+            DrinksRepository(database = database)
         )
     }
 
@@ -33,20 +34,30 @@ class DrinksFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentDrinksBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val adapter = DrinksAdapter()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val adapter = DrinksAdapter { drink ->
+            val action = DrinksFragmentDirections.actionNavigationDrinksToDrinkFragment(
+                drinkId = drink.id,
+                drinkName = drink.name
+            )
+            findNavController().navigate(action)
+        }
         binding.drinkList.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.drinks.collectLatest { pagindData ->
-                adapter.submitData(pagindData)
+            viewModel.pagingDrinks.collectLatest { pagingData ->
+                adapter.submitData(pagingData)
             }
         }
 
-        return root
+        binding.btnCreateDrink.setOnClickListener {
+            val action = DrinksFragmentDirections.actionNavigationDrinksToCreateDrinkFragment()
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {

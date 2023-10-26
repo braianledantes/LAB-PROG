@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.braianledantes.elbardelafai.App
 import com.braianledantes.elbardelafai.databinding.FragmentHomeBinding
 import com.braianledantes.elbardelafai.repository.DrinksRepository
-import com.braianledantes.elbardelafai.vm.HomeViewModel
-import com.braianledantes.elbardelafai.vm.HomeViewModelFactory
+import com.braianledantes.elbardelafai.repository.PopularDrinksRepository
+import com.braianledantes.elbardelafai.ui.drinks.DrinksFragmentDirections
 
 class HomeFragment : Fragment() {
 
@@ -21,7 +22,7 @@ class HomeFragment : Fragment() {
         val application = activity?.application as App
         val database = application.database
         HomeViewModelFactory(
-            DrinksRepository(database)
+            PopularDrinksRepository(database = database)
         )
     }
 
@@ -35,7 +36,13 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = PopularDrinkAdapter()
+        val adapter = PopularDrinkAdapter { drink ->
+            val action = HomeFragmentDirections.actionNavigationHomeToDrinkFragment(
+                drinkId = drink.id,
+                drinkName = drink.name
+            )
+            findNavController().navigate(action)
+        }
         binding.popularDrinkList.adapter = adapter
 
         viewModel.popularDrinkList.observe(viewLifecycleOwner) {

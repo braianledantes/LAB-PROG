@@ -9,17 +9,45 @@
         android:id="@+id/navigation_home"
         android:name="com.braianledantes.elbardelafai.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_drink_fragment"
+            app:destination="@id/drink_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_drinks"
         android:name="com.braianledantes.elbardelafai.ui.drinks.DrinksFragment"
         android:label="@string/title_drinks"
-        tools:layout="@layout/fragment_drinks" />
+        tools:layout="@layout/fragment_drinks" >
+        <action
+            android:id="@+id/action_navigation_drinks_to_drinkFragment"
+            app:destination="@id/drink_fragment" />
+        <action
+            android:id="@+id/action_navigation_drinks_to_createDrinkFragment"
+            app:destination="@id/create_drink_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_ingredients"
         android:name="com.braianledantes.elbardelafai.ui.ingredients.IngredientsFragment"
         android:label="@string/title_ingredients"
         tools:layout="@layout/fragment_ingredients" />
+    <fragment
+        android:id="@+id/drink_fragment"
+        android:name="com.braianledantes.elbardelafai.ui.drinkdetails.DrinkDetailsFragment"
+        android:label="{drink_name}"
+        tools:layout="@layout/fragment_drink">
+        <argument
+            android:name="drink_id"
+            app:argType="string" />
+        <argument
+            android:name="drink_name"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/create_drink_fragment"
+        android:name="com.braianledantes.elbardelafai.ui.createdrink.CreateDrinkFragment"
+        android:label="@string/title_create_drink"
+        tools:layout="@layout/fragment_create_drink" />
 </navigation>

@@ -3,6 +3,7 @@ package com.braianledantes.elbardelafai.util
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.braianledantes.elbardelafai.R
 import com.bumptech.glide.Glide
 
 /**
@@ -22,5 +23,10 @@ fun hideIfNetworkError(view: View, isNetWorkError: Boolean, playlist: Any?) {
  */
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, url: String) {
-    Glide.with(imageView.context).load(url).into(imageView)
+    Glide.with(imageView.context)
+        .load(url)
+        .placeholder(R.drawable.image)
+        .error(R.drawable.broken_image)
+        .centerCrop()
+        .into(imageView)
 }

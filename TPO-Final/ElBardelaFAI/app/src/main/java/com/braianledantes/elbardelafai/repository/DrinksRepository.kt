@@ -1,37 +1,85 @@
 package com.braianledantes.elbardelafai.repository
 
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
+import com.braianledantes.elbardelafai.core.Resource
 import com.braianledantes.elbardelafai.database.ElBarDeLaFAIDatabase
-import com.braianledantes.elbardelafai.database.asDomainModel
 import com.braianledantes.elbardelafai.domain.Drink
+import com.braianledantes.elbardelafai.domain.DrinkWithIngredients
 import com.braianledantes.elbardelafai.network.ElBarDeLaFaiNetwork
-import com.braianledantes.elbardelafai.network.toDatabaseModel
+import com.braianledantes.elbardelafai.network.ElBarDeLaFaiService
+import com.braianledantes.elbardelafai.network.NetworkIngredient
+import com.braianledantes.elbardelafai.network.toDomainModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
-class DrinksRepository(private val database: ElBarDeLaFAIDatabase) {
+private const val DRINKS_PAGE_SIZE = 20
 
-    val popularDrinkList = database.drinkDao.getDrinks().map { it.asDomainModel() }
+class DrinksRepository(
+    private val service: ElBarDeLaFaiService = ElBarDeLaFaiNetwork.service,
+    private val database: ElBarDeLaFAIDatabase
+) {
 
-    suspend fun refreshPopularDrinks() {
-        withContext(Dispatchers.IO) {
-            val list = ElBarDeLaFaiNetwork.service.getCurrentDrinkList()
-            database.drinkDao.deleteAll()
-            database.drinkDao.insert(list.toDatabaseModel())
+    fun getDrinkFromApi(id: String) = flow {
+
+        emit(Resource.Loading)
+        try {
+            val drink = service.getDrink(id)
+            val ingredients = drink.ingredients.map { ingredientName ->
+                val name = ingredientName.replace(" ", "%20")
+                try {
+                    service.getIngredientByName(name)
+                } catch (e: Exception) {
+                    // devuelve un ingrediente sin imagen
+                    NetworkIngredient(
+                        name = ingredientName,
+                        srcImage = ""
+                    )
+                }
+            }
+            emit(
+                Resource.Success(
+                    DrinkWithIngredients(
+                        drink = drink.toDomainModel(),
+                        ingredients = ingredients.toDomainModel()
+                    )
+                )
+            )
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
         }
+
     }
 
     suspend fun createDrink(drink: Drink): Drink = withContext(Dispatchers.IO) {
         val drinkModel = drink.toNetworkModel()
-        val newDrink = ElBarDeLaFaiNetwork.service.createDrink(drinkModel)
+        val newDrink = service.createDrink(drinkModel)
         database.drinkDao.insert(newDrink.toDatabaseModel())
         newDrink.toDomainModel()
     }
 
-    fun drinkPagingSource(search: String) = DrinkPagingSource(
-        backend = ElBarDeLaFaiNetwork.service,
-        drinksDao = database.drinkDao,
-        query = search
-    )
+    @OptIn(ExperimentalPagingApi::class)
+    fun getPagingDrinks(): Flow<PagingData<Drink>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = DRINKS_PAGE_SIZE,
+                initialLoadSize = DRINKS_PAGE_SIZE
+            ),
+            remoteMediator = DrinkRemoteMediator(
+                service, database
+            ),
+            pagingSourceFactory = { database.drinkDao.getAllDrinks() }
+        )
+            .flow
+            .map { pagingData ->
+                pagingData.map { it.toDomainModel() }
+            }
+    }
 
 }

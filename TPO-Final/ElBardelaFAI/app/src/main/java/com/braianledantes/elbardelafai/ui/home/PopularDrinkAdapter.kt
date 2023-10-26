@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.braianledantes.elbardelafai.databinding.ItemPopularDrinkBinding
 import com.braianledantes.elbardelafai.domain.Drink
 
-class PopularDrinkAdapter : ListAdapter<Drink, PopularDrinkAdapter.DrinkViewHolder>(DIFF_CALLBACK) {
+class PopularDrinkAdapter(private val onDrinkClicked: (Drink) -> Unit) :
+    ListAdapter<Drink, PopularDrinkAdapter.DrinkViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkViewHolder {
         return DrinkViewHolder(
@@ -20,14 +21,15 @@ class PopularDrinkAdapter : ListAdapter<Drink, PopularDrinkAdapter.DrinkViewHold
 
     override fun onBindViewHolder(holder: DrinkViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, onDrinkClicked)
     }
 
     inner class DrinkViewHolder(
         private val binding: ItemPopularDrinkBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(drink: Drink) {
+        fun bind(drink: Drink, onDrinkClicked: (Drink) -> Unit) {
             binding.apply {
+                itemView.setOnClickListener { onDrinkClicked(drink) }
                 this.drink = drink
             }
         }

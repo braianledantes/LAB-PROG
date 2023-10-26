@@ -42,6 +42,18 @@ interface ElBarDeLaFaiService {
         @Query("search") query: String
     ): NetworkDrinkListContainer
 
+    @GET("api/ingredients")
+    suspend fun getIngredientsList(
+        @Query("search") search: String = "",
+        @Query("page") page: Int? = null,
+        @Query("pageSize") pageSize: Int? = null
+    ): NetworkIngredientListContainer
+
+    @GET("api/ingredients/{name}")
+    suspend fun getIngredientByName(
+        @Path("name") name: String
+    ) : NetworkIngredient
+
 }
 
 object ElBarDeLaFaiNetwork {
