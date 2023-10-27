@@ -5,6 +5,7 @@
     <string name="title_ingredients">Ingredients</string>
     <string name="title_popular_drinks">Popular Drinks</string>
     <string name="title_create_drink">Create drink</string>
+    <string name="menu_item_about_title">About</string>
 
     <string name="message_dialog_creating_drink">Successfully created drink</string>
     <string name="accept_option">Accept</string>
@@ -15,5 +16,8 @@
     <string name="text_field_drink_image_url">Instructions</string>
     <string name="btn_create">Create</string>
     <string name="btn_cancel">Cancel</string>
+    <string name="title_about">About</string>
+    
+    <string name="repositorio_en_github"><u>Github repository</u></string>
 
 </resources>
