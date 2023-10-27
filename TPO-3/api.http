@@ -40,7 +40,10 @@ DELETE http://localhost:8080/api/drinks/13501
 GET http://localhost:8080/api/ingredients
 
 ### Recuperar un ingrediente por nombre
-GET http://localhost:8080/api/ingredients/Orange Juice
+GET http://localhost:8080/api/ingredients/Applejack
 
 ### Buscar ingredientes por nombre
 GET http://localhost:8080/api/ingredients?search=gin
+
+### generar un dato aleatorio
+GET http://localhost:8080/api/ingredients/random

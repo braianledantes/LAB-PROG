@@ -23,6 +23,13 @@ export class IngredientController {
         const ingredient = await IngredientModel.getByName({ name });
         if (ingredient) return res.json(ingredient);
 
-        res.status(404).json(({ message: 'Drink not fount' }));
+        res.status(404).json(({ message: 'Ingredient not fount' }));
+    }
+
+    static async getRandom(req, res) {
+        const ingredient = await IngredientModel.getRandom();
+        if (ingredient) return res.json(ingredient);
+
+        res.status(404).json(({ message: 'Ingredient can not be generated' }));
     }
 }

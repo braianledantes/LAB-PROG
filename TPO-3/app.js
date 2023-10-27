@@ -1,12 +1,11 @@
 import express, { json } from "express";
-import bodyParser from 'body-parser';
-import { corsMiddleware } from "./middlewares/cors.js";
+import cors from 'cors';
 import { drinksRouter } from "./routes/drink.js";
 import { ingredientsRouter } from "./routes/ingredients.js";
 
 const app = express();
 app.use(json());
-app.use(corsMiddleware())
+app.use(cors())
 app.disable('x-powered-by');
 
 // para servir el sitio estático

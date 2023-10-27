@@ -1,7 +1,22 @@
 import { readJSON } from "../utils.js";
-import { randomUUID } from 'node:crypto';
 
 const ingredients = readJSON('./data/ingredients.json');
+
+sortIngredients();
+
+function sortIngredients() {
+    ingredients.sort((a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+}
 
 export class IngredientModel {
     static async getAll({ search = "", page = 1, pageSize = 12 }) {
@@ -36,5 +51,14 @@ export class IngredientModel {
 
     static async getByName({ name }) {
         return ingredients.find(i => i.name === name);
+    }
+
+    // esto es una prueba
+    static async getRandom() {
+        const pos = Math.floor(Math.random() * ingredients.length);
+        const res = ingredients[pos];
+        res.price = Math.floor(Math.random() * (100 - 1) + 1);
+        res.isPopular = Math.random() < 0.5;
+        return res;
     }
 }
