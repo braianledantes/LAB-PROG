@@ -13,11 +13,19 @@
 
     <string name="text_field_drink_name">Name</string>
     <string name="text_field_drink_instructions">Instructions</string>
-    <string name="text_field_drink_image_url">Instructions</string>
+    <string name="text_field_drink_image_url">Image URL</string>
     <string name="btn_create">Create</string>
     <string name="btn_cancel">Cancel</string>
     <string name="title_about">About</string>
     
-    <string name="repositorio_en_github"><u>Github repository</u></string>
+    <string name="search_drink">Search a drink</string>
+
+    <string name="search_ingredient">Search an ingredient</string>
+
+    <string name="repository_on_github"><u>Github repository</u></string>
+    <string name="laboratorio_de_programacion">Laboratorio de Programación</string>
+    <string name="trabajo_practico_obligatorio">Trabajo Práctico Obligatorio</string>
+    <string name="braian_ledantes">Braian Ledantes</string>
+    <string name="fai_1686">FAI-1686</string>
 
 </resources>

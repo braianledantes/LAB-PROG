@@ -1,5 +1,10 @@
 package com.braianledantes.elbardelafai.util
 
+import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.widget.SearchView
+
 private val PUNCTUATION = listOf(", ", "; ", ": ", " ")
 
 /**
@@ -30,4 +35,23 @@ fun String.smartTruncate(length: Int): String {
         builder.append("...")
     }
     return builder.toString()
+}
+
+inline fun SearchView.onQueryTextChanged(crossinline onQueryTextChanged: (String?) -> Unit) {
+    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String): Boolean {
+            onQueryTextChanged(query)
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            return false
+        }
+    })
+}
+
+fun View.hideKeyboard(context: Context) {
+    val inputMethodManager =
+        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
 }

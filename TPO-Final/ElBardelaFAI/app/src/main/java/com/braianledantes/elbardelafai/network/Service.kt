@@ -29,7 +29,7 @@ interface ElBarDeLaFaiService {
 
     @GET("api/drinks")
     suspend fun getDrinkList(
-        @Query("search") search: String = "",
+        @Query("search") search: String,
         @Query("page") page: Int? = null,
         @Query("pageSize") pageSize: Int? = null
     ): NetworkDrinkListContainer
@@ -44,7 +44,7 @@ interface ElBarDeLaFaiService {
 
     @GET("api/ingredients")
     suspend fun getIngredientsList(
-        @Query("search") search: String = "",
+        @Query("search") search: String,
         @Query("page") page: Int? = null,
         @Query("pageSize") pageSize: Int? = null
     ): NetworkIngredientListContainer

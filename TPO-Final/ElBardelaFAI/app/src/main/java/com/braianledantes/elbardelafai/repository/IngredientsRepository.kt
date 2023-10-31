@@ -20,17 +20,21 @@ class IngredientsRepository(
 ) {
 
     @OptIn(ExperimentalPagingApi::class)
-    fun getPagingIngredients(): Flow<PagingData<Ingredient>> {
+    fun getPagingIngredients(query: String): Flow<PagingData<Ingredient>> {
         return Pager(
             config = PagingConfig(
                 pageSize = INGREDIENTS_PAGE_SIZE,
                 initialLoadSize = INGREDIENTS_PAGE_SIZE
             ),
             remoteMediator = IngredientRemoteMediator(
+                query = query,
                 service = service,
                 database = database
             ),
-            pagingSourceFactory = { database.ingredientDao.getPagingIngredients() }
+            pagingSourceFactory = {
+                val dbQuery = "%${query.replace(' ', '%')}%"
+                database.ingredientDao.getPagingIngredients(dbQuery)
+            }
         )
             .flow
             .map { pagingData ->

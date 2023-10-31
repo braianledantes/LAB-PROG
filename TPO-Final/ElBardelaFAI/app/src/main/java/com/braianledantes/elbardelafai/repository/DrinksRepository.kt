@@ -65,16 +65,17 @@ class DrinksRepository(
     }
 
     @OptIn(ExperimentalPagingApi::class)
-    fun getPagingDrinks(): Flow<PagingData<Drink>> {
+    fun getPagingDrinks(query: String): Flow<PagingData<Drink>> {
         return Pager(
             config = PagingConfig(
                 pageSize = DRINKS_PAGE_SIZE,
                 initialLoadSize = DRINKS_PAGE_SIZE
             ),
-            remoteMediator = DrinkRemoteMediator(
-                service, database
-            ),
-            pagingSourceFactory = { database.drinkDao.getAllDrinks() }
+            remoteMediator = DrinkRemoteMediator(query, service, database),
+            pagingSourceFactory = {
+                val dbQuery = "%${query.replace(' ', '%')}%"
+                database.drinkDao.getDrinksByName(dbQuery)
+            }
         )
             .flow
             .map { pagingData ->

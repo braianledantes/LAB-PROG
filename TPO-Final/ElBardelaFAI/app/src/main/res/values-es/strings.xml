@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">El Bar de la FAI</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_drinks">Tragos</string>
+    <string name="title_ingredients">Ingredientes</string>
+    <string name="title_popular_drinks">Tragos Populares</string>
+    <string name="title_create_drink">Crear Trago</string>
+    <string name="menu_item_about_title">Acerca de</string>
+
+    <string name="message_dialog_creating_drink">Trago creado exitosamente</string>
+    <string name="accept_option">Aceptar</string>
+    <string name="error_invalid">Invalido</string>
+
+    <string name="text_field_drink_name">Nombre</string>
+    <string name="text_field_drink_instructions">Instrucciones</string>
+    <string name="text_field_drink_image_url">URL de la imágen</string>
+    <string name="btn_create">Crear</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="title_about">Acerca de</string>
+
+    <string name="search_drink">Buscar un trago</string>
+
+    <string name="search_ingredient">Buscar un ingrediente</string>
+
+    <string name="repository_on_github"><u>Repositorio de Github</u></string>
+    <string name="laboratorio_de_programacion">Laboratorio de Programación</string>
+    <string name="trabajo_practico_obligatorio">Trabajo Práctico Obligatorio</string>
+    <string name="braian_ledantes">Braian Ledantes</string>
+    <string name="fai_1686">FAI-1686</string>
+</resources>

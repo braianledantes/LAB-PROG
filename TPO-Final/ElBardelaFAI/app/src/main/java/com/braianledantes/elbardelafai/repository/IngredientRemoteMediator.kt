@@ -16,6 +16,7 @@ private const val STARTING_PAGE = 1
 
 @OptIn(ExperimentalPagingApi::class)
 class IngredientRemoteMediator(
+    private val query: String,
     private val service: ElBarDeLaFaiService,
     private val database: ElBarDeLaFAIDatabase
 ) : RemoteMediator<Int, IngredientEntity>() {
@@ -35,7 +36,11 @@ class IngredientRemoteMediator(
                 LoadType.APPEND -> ++lastPage
             }
 
-            val response = service.getIngredientsList(page = page, pageSize = state.config.pageSize)
+            val response = service.getIngredientsList(
+                search = query,
+                page = page,
+                pageSize = state.config.pageSize
+            )
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH)

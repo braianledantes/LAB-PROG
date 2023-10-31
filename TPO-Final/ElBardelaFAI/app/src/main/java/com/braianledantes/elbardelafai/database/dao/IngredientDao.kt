@@ -9,8 +9,8 @@ import com.braianledantes.elbardelafai.database.entities.IngredientEntity
 
 @Dao
 interface IngredientDao {
-    @Query("select * from ingredient")
-    fun getPagingIngredients() : PagingSource<Int, IngredientEntity>
+    @Query("select * from ingredient where name like :query order by name")
+    fun getPagingIngredients(query: String) : PagingSource<Int, IngredientEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(ingredients: List<IngredientEntity>)

@@ -16,6 +16,9 @@ interface DrinkDao {
     @Query("select * from drink")
     fun getAllDrinks() : PagingSource<Int, DrinkEntity>
 
+    @Query("select * from drink where name like :query order by name asc")
+    fun getDrinksByName(query: String) : PagingSource<Int, DrinkEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(drink: DrinkEntity)
 
@@ -24,4 +27,5 @@ interface DrinkDao {
 
     @Query("delete from drink")
     suspend fun clearAll()
+
 }
