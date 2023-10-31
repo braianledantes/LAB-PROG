@@ -5,8 +5,8 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.braianledantes.elbardelafai.database.entities.DrinkEntity
 import com.braianledantes.elbardelafai.database.ElBarDeLaFAIDatabase
+import com.braianledantes.elbardelafai.database.entities.DrinkEntity
 import com.braianledantes.elbardelafai.network.ElBarDeLaFaiService
 import com.braianledantes.elbardelafai.network.toDatabaseModel
 import retrofit2.HttpException

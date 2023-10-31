@@ -3,8 +3,6 @@ package com.braianledantes.elbardelafai.network
 import com.braianledantes.elbardelafai.database.entities.DrinkEntity
 import com.braianledantes.elbardelafai.database.entities.PopularDrinkEntity
 import com.braianledantes.elbardelafai.domain.Drink
-import com.braianledantes.elbardelafai.domain.DrinkWithIngredients
-import com.braianledantes.elbardelafai.domain.Ingredient
 import com.google.gson.annotations.SerializedName
 
 data class NetworkDrinkListContainer(

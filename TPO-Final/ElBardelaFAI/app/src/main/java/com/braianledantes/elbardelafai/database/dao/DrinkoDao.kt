@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.braianledantes.elbardelafai.database.entities.DrinkEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DrinkDao {
@@ -21,5 +20,4 @@ interface DrinkDao {
 
     @Query("delete from drink")
     suspend fun clearAll()
-
 }

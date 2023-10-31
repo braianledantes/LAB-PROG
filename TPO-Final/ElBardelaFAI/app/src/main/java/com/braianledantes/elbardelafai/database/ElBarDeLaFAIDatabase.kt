@@ -1,7 +1,9 @@
 package com.braianledantes.elbardelafai.database
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.braianledantes.elbardelafai.database.dao.DrinkDao
 import com.braianledantes.elbardelafai.database.dao.IngredientDao
 import com.braianledantes.elbardelafai.database.dao.PopularDrinkDao

@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.braianledantes.elbardelafai.repository.DrinksRepository
 import com.braianledantes.elbardelafai.repository.PopularDrinksRepository
 import kotlinx.coroutines.launch
 
