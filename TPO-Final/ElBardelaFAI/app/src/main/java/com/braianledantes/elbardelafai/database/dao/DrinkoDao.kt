@@ -10,12 +10,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DrinkDao {
-    @Query("select * from drink")
-    fun getDrinks(): Flow<List<DrinkEntity>>
-
-    @Query("select * from drink")
-    fun getAllDrinks() : PagingSource<Int, DrinkEntity>
-
     @Query("select * from drink where name like :query order by name asc")
     fun getDrinksByName(query: String) : PagingSource<Int, DrinkEntity>
 
