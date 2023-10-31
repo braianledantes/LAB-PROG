@@ -35,7 +35,6 @@ data class NetworkDrink(
     )
 }
 
-fun List<NetworkDrink>.toDomainModel() = map { it.toDomainModel() }
 fun List<NetworkDrink>.toDatabaseModel() = map { it.toDatabaseModel() }
 
 fun List<NetworkDrink>.toPopularDrinkEntity() = map {
@@ -45,13 +44,5 @@ fun List<NetworkDrink>.toPopularDrinkEntity() = map {
         instructions = it.instructions,
         imageUrl = it.imageUrl
     )
-}
-
-fun NetworkDrinkListContainer.toDomainModel(): List<Drink> {
-    return drinks.map { it.toDomainModel() }
-}
-
-fun NetworkDrinkListContainer.toDatabaseModel(): List<DrinkEntity> {
-    return drinks.map { it.toDatabaseModel() }
 }
 

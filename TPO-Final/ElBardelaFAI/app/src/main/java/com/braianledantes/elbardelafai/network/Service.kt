@@ -10,7 +10,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ElBarDeLaFaiService {
-
     @POST("api/drinks")
     suspend fun createDrink(
         @Body drink: NetworkDrink
@@ -37,11 +36,6 @@ interface ElBarDeLaFaiService {
     @GET("api/drinks/concurrents")
     suspend fun getCurrentDrinkList(): List<NetworkDrink>
 
-    @GET("api/drinks")
-    suspend fun searchDrink(
-        @Query("search") query: String
-    ): NetworkDrinkListContainer
-
     @GET("api/ingredients")
     suspend fun getIngredientsList(
         @Query("search") search: String,
@@ -53,7 +47,6 @@ interface ElBarDeLaFaiService {
     suspend fun getIngredientByName(
         @Path("name") name: String
     ) : NetworkIngredient
-
 }
 
 object ElBarDeLaFaiNetwork {

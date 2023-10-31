@@ -18,6 +18,6 @@ data class Drink(
         name = this.name,
         instructions = this.instructions,
         imageUrl = this.imageUrl,
-        ingredients = arrayListOf () // TODO
+        ingredients = emptyList()
     )
 }
