@@ -18,9 +18,13 @@ class PopularDrinksRepository(
 
     suspend fun refreshPopularDrinks() {
         withContext(Dispatchers.IO) {
-            val list = service.getCurrentDrinkList()
-            database.popularDrinkDao.clearAll()
-            database.popularDrinkDao.insertAll(list.toPopularDrinkEntity())
+            try {
+                val list = service.getCurrentDrinkList()
+                database.popularDrinkDao.clearAll()
+                database.popularDrinkDao.insertAll(list.toPopularDrinkEntity())
+            } catch (e: Exception) {
+
+            }
         }
     }
 }

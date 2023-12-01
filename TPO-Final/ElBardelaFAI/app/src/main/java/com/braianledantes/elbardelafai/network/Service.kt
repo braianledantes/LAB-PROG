@@ -52,7 +52,7 @@ interface ElBarDeLaFaiService {
 object ElBarDeLaFaiNetwork {
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://elbardelafai-dev.fl0.io/")
+        .baseUrl("https://elbardelafai-dev-adzk.3.us-1.fl0.io")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
